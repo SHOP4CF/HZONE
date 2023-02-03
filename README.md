@@ -2,7 +2,7 @@
 <div align="center">
 
 <a href="https://www.irt-jules-verne.fr/">
-  <img src="images/IRT_LOGO_RVB-BLANC.png" alt="LogoIRT" width="300">
+  <img src="images/IRT_LOGO_RVB-COULEURS.png" alt="LogoIRT" width="150">
   <br />
   </a>
 
@@ -13,16 +13,8 @@
 <h3 align="center">Shop4CF <br /> H-Zone component</h3>
 
   <p align="center">
-    Scheduling Tasks with Zone Occupation
+    Scheduling Tasks with Zone Occupation Constraints
     <br />
-    <a href="https://github.com/othneildrew/Best-README-Template"><strong>Explore the docs »</strong></a>
-    <br />
-    <br />
-    <a href="images/FlexSim Shop4cf 2.mp4">View Demo</a>
-    ·
-    <a href="https://github.com/othneildrew/Best-README-Template/issues">Report Bug</a>
-    ·
-    <a href="https://github.com/othneildrew/Best-README-Template/issues">Request Feature</a>
   </p>
 </div>
 
@@ -57,8 +49,7 @@
      * [Reading simulation results](#readsimulationresults)
 3. [Methods explained](#methodsexplained)
    * [Method 1:Parallel Schedule Scheme](#pss-explained)
-   * [Method 2:TreeNode Search](#tns-explained)
-   * [Method 3:DFS with features of Evolutionary Algorithms](#dfs-ft-EA-explained)
+   * [Method 2:DFS with features of Evolutionary Algorithms](#dfs-ft-EA-explained)
 4. [Contributing](#contributing)
 5. [License](#license)
 6. [Contact](#contact)
@@ -147,11 +138,11 @@ their working zones and will improve work safety by setting temporal risk zones 
 ## Built With <a name="builtwith"></a>
 
 The Scheduler was programmed in JAVA using the [IntelliJ IDE](https://www.jetbrains.com/idea/)
-and the following Java libraries:
+and the following libraries:
 
-* [Google Guava](https://github.com/google/guava)
-* [JGraphT](https://jgrapht.org/)
-* [Apache POI][Apache-url]
+* [Google Guava 31.1](https://github.com/google/guava)
+* [JGraphT 1.5.1](https://jgrapht.org/)
+* [Apache POI 5.2.3][Apache-url]
 
 <p align="center">
   <img src="images\Guava.jpeg" alt="guava"  width="100"/>
@@ -168,7 +159,7 @@ The simulator template was developed using [Flexsim simulation](https://www.flex
 
 --------------
 
-# Getting Started<a name="getttingstarted"></a>
+# Getting Started <a name="getttingstarted"></a>
 
 ## Using Docker
 
@@ -193,16 +184,12 @@ docker run -v C:/Users/username/Documents/data:/root/shop4cf_hzones/data hzone:l
 
 ## Prerequisites <a name="prerequisites"></a>
 
-* Java Virtual Machine
+* Java Virtual Machine ( Java 12.0.1 or higher)
 * Windows 10 or higher *(might work with older releases)*
 * Microsoft Excel (.xlsx)
 * Flexsim 22.2.3. or higher *(might work with older releases)*
 
 ## Installation <a name="installation"></a>
-
-<span style="color: yellow;">
-TODO --> à completer
-</span>.
 
 1. Download and install a JAVA Virtual Machine from Oracle website:  <https://www.java.com/download/>
 2. Install Microsoft Excel
@@ -224,20 +211,25 @@ The template limited to  TODO #of Tasks, # of obstacles,etc </em>
     | "Resources"  | Specification of Resourcs with their types. |
     | "Layout"     | Specification of Shop-floor layout in 2D    |
 
-2. Run Scheduler using console:
-
-    ```sh
-    java -jar HZones.jar "<FilePath to InputData File>"
-   ```
-
-      <font size="2">
-      <em>E.g. java -jar HZones.jar "C:\Documents\HZones\data\InputData_Scheduler.xlsx"</em>
-      </font>
+2. Run the Scheduler
+   1. <u>Option 1: via Docker </u>  
+      <span style="color: yellow;">
+      TODO --> include docker details
+      </span>
+   2. <u>Option 2: locally</u>
+      1. Download HZone Files in local disk from Git repository
+      2. Open console and go to the folder where `HZones.jar` is located.
+      3. Execute the scheduler by typing this command:  
+          ``java -jar HZones.jar <FilePath to InputData File>``  
+          <font size="2">
+            <em>E.g. java -jar HZones.jar "C:\Documents\HZones\data\InputData_Scheduler.xlsx"</em>
+          </font>
 3. Read scheduler output in console.
 4. Experiment trying different scheduler parameters. Keep the best solution.
-5. Recover the output file produced by the scheduler @ the filepath specified in Sheet:"Parameters".
-6. Open Flexsim template model `HZone_template_model`.
-7. Set up the model
+5. Recover the output file produced by the scheduler.
+   The output file will be generated @ the filepath specified in Sheet:"Parameters"
+6. Open Flexsim template model `HZone_template_model`. ( Make sure Flexsim software is already installed in your computer)
+7. Set up the model ( see section: [Setting up a simulation](#setupsimulation))
 8. Input data into the simulation model
 9. Run the simulation
 10. Read simulation results (KPIs)
@@ -309,7 +301,7 @@ to the nature and needs of their application and make experimentation to fine tu
 
 | Field                    | Description                                                                                                                                                                                                                 |
 |--------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `OutputFile`             | Name of the output file on which the schedule will be written.<br/> The folder will be created in the "data" folder which should be in the same folder as the executable.
+| `OutputFile`             | Name of the output file on which the schedule will be written.<br/> The folder will be created in the "data" folder which should be in the same folder as the executable.  |
 | `Method`                 | Scheduling algorithm that will be used to solve the problem.                                                                                                                                                                |
 | `Priority Rule`          | Priority Rule with which the scheduling algorithm will base its search. (heuristic)                                                                                                                                         |
 | `Worker Selector Rule`   | Selector rule with which the algorithm will allocate workers to tasks when searching for a solution.                                                                                                                        |
@@ -332,25 +324,25 @@ Workers and resources will be allocated to tasks according to their workload and
   Accessibility Method: `A_Star`]
 
     <em>This combination will also use the parallel scheduling scheme but will use all the priority rules and return the
-solution with shortest make-span and indicate the priority rule that produced it.</em>
+  solution with shortest make-span and indicate the priority rule that produced it.</em>
   <br /><br />
 * >Example3: [ Method: `DFS_ft_EA_Method`/ Priority Rule: /
     Worker Selector Rule: `LeastWorkLoad`/ Resource Selector Rule:`LeastWorkLoad` /
     Accessibility Method: `A_Star`]
 
     <em>This combination will use a Depth First Search algorithm with features of Evolutionary algorithms,
-the user could choose a priority rule to apply, if left empty the algorithm will use the `SPT` rule.
-</em>
+    the user could choose a priority rule to apply, if left empty the algorithm will use the `SPT` rule.
+    </em>
 
 #### Methods: <a name="methods"></a>
 
-| Priority Rule                   | Description                                                                                                                                                                                                                                            |
+| Method                          | Description                                                                                                                                                                                                                                            |
 |---------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | `ParallelScheduleScheme_Method` | Implements the Parallel Scheduling Scheme to construct a solution using a priority rule as heuristic.                                                                                                                                                  |
 | `DFS_ft_EA_Method`              | Implements a Depth First Search algorithm to construct initial solutions and will consecrate the remaining allowed time to search for improvements to this solutions                                                                                   |
-| `TreeNodeSearch_Method`         | Implements the Depth First Search algorithm to search for all the possible solutions exploring the couple: Task + Worker <br /> However this method is not recommended as it easily become unsolvable due to combinatorial complexity of the problem.  |
 
-<span style="color: yellow;">FIXME  TreeNode --> remove?  </span>
+A Depth First Search Algorithm to explore the solution space given by the couple: <em>Task+Worker</em> was also considered.
+However,this method was left out as it easily becomes unsolvable due to combinatorial complexity of the problem which (in most cases) will not finish the search in a reasonable time.
 
 #### Priority Rules <a name="pr"></a>
 
@@ -443,16 +435,16 @@ Finally, a quick view of the found schedule is printed. here we can find:
 
 Here is a comparison of test runs using different parameter combinations for the sample data provided in the "InputData_Scheduler.xlsx" file.
 
-| Parameters                                       | Results                                                                                                                                         |
-|--------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------|
-| ![stp-any-params](images\1_stp_any_params.png)   | Makespan: 2549 sec / Utilisation Rate: 0.35223 / num of resources: 22 / number of workers: 7                                                    |
-| ![stp-wl-params](images\1_stp_wl_params.png)     | Makespan: 2549 sec / Utilisation Rate: 0.35223 / num of resources: 25 / number of workers: 7                                                    |
-| ![mis-any-params](images\1_mis_any_params.png)   | Makespan: 2500 sec / Utilisation Rate: 0.35914 / num of resources: 22 / number of workers: 7                                                    |
-| ![mis-wl-params](images\1_mis_wl_params.png)     | Makespan: 2500 sec / Utilisation Rate: 0.35914 / num of resources: 25 / number of workers: 6                                                    |
-| ![all-any-params](images\1_all_any_params.png)   | Makespan: 2489 sec / Utilisation Rate: 0.36073 / num of resources: 22 / number of workers: 7 <br/> Best solution found with priority rule: GRPW |
-| ![all-wl-params](images\1_all_wl_params.png)     | Makespan: 2489 sec / Utilisation Rate: 0.36073 / num of resources: 25 / number of workers: 7 <br/> Best solution found with priority rule: GRPW |
-| ![3-mis_wl-params](images\3_mis_wl_params.png)   | Makespan: 2347 sec / Utilisation Rate: 0.38255 / num of resources: 25 / number of workers: 7                                                    |
-| ![3-stp_wl-params](images\3_stp_wl_params.png)   | Makespan: 2335 sec / Utilisation Rate: 0.38452 / num of resources: 25 / number of workers: 7                                                    |
+| Parameters                                                       | Results                                                                                                                                         |
+|------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------|
+| ![stp-any-params](images\1_stp_any_params.png)                   | Makespan: 2549 sec / Utilisation Rate: 0.35223 / num of resources: 22 / number of workers: 7                                                    |
+| ![stp-wl-params](images\1_stp_wl_params.png)                     | Makespan: 2549 sec / Utilisation Rate: 0.35223 / num of resources: 25 / number of workers: 7                                                    |
+| ![mis-any-params](images\1_mis_any_params.png)                   | Makespan: 2500 sec / Utilisation Rate: 0.35914 / num of resources: 22 / number of workers: 7                                                    |
+| ![mis-wl-params](images\1_mis_wl_params.png)                     | Makespan: 2500 sec / Utilisation Rate: 0.35914 / num of resources: 25 / number of workers: 6                                                    |
+| ![all-any-params](images\1_all_any_params.png)                   | Makespan: 2489 sec / Utilisation Rate: 0.36073 / num of resources: 22 / number of workers: 7 <br/> Best solution found with priority rule: GRPW |
+| ![all-wl-params](images\1_all_wl_params.png)                     | Makespan: 2489 sec / Utilisation Rate: 0.36073 / num of resources: 25 / number of workers: 7 <br/> Best solution found with priority rule: GRPW |
+| ![3-mis_wl-params](images\3_mis_wl_params.png)                   | Makespan: 2347 sec / Utilisation Rate: 0.38255 / num of resources: 25 / number of workers: 7                                                    |
+| ![3-stp_wl-params](images\3_stp_wl_params.png)                   | Makespan: 2335 sec / Utilisation Rate: 0.38452 / num of resources: 25 / number of workers: 7                                                    |
 
 From these results is can bee seen that the best result given with the Parallel Scheduling Scheme method was given by the GRPW priority rule.
 We can also observe how the DFS_ft_EA method 3 succeeds in improving the schedule result.
@@ -466,6 +458,16 @@ well-balanced among workers.Another observation that can be made is that the sec
 |------------------------------------------------|-----------------------------------------------|
 | ![stp-any-params](images\1_mis_any_params.png) | ![stp-wl-params](images\1_mis_wl_params.png)  |
 | ![mis-wl-params](images\1_mis_any_console.png) | ![mis-wl-params](images\1_mis_wl_console.png) |
+
+This test, as it can be seen, was over-sized. The workers team is too big for the project thus the low utilization rate.
+To get a more realistic situation, we made a second test instance using only 3 workers for the same tasks getting a utilization
+rate around 80% and a make-span not so far from the critical path.  The input instance is in the `InputData_Scheduler2.xlsx`.  
+<em>NOTE: a different distribution of skills might produce better results.</em>  
+
+| Parameters                                                       | Results                                                                                      |
+|------------------------------------------------------------------|----------------------------------------------------------------------------------------------|
+| ![3-stp_wl-params_3Workers](images\3_stp_wl_params_3Workers.png) | Makespan: 2608 sec / Utilisation Rate: 0.80329 / num of resources: 25 / number of workers: 3 |
+| ![3-stp_wl-params_3Workers](images\3_mis_wl_params_3Workers.png) | Makespan: 2545 sec / Utilisation Rate: 0.8231 / num of resources: 25 / number of workers: 3  |
 
 ### Opening the simulation model <a name="opensimulation"></a>
 
@@ -530,9 +532,6 @@ When you click on it the model will construct the layout and send you a confirma
 Click `OK`, now you can see the environment you described to the scheduler.
 
 ![Run1](images\Run1.png)
-<span style="color: yellow;">
-  FIXME --> the image is not clean..
-</span>.
 
 Click another time on Run and the model will start.
 <p align="center">
@@ -544,13 +543,9 @@ You can adjust the simulation speed with the scrollbar.
 <p align="center">
  <img src="images\Speed.png" alt="Speed"/>
 </p>
-
 The number displayed is the number of seconds which the simulation progress each second in real time.  
-*NOTE : if you have changed the operator's names the first time, you have to run the model once and the reset
+*NOTE : if you have changed the operator's names the first time you have to run the model once and then reset
 and restart to see the change.*
-<span style="color: yellow;">
-FIXME --> Rewrite sentence..
-</span>.
 
 ### Reading simulation results <a name="readsimulationresults"></a>
 
@@ -575,15 +570,18 @@ In this dashboard you can consult different indicators :
 
 **The Gantt Chart :** you can visualize the tasks sequence during simulation time.
 
+*NOTE : Worker behaviour was programmed to reflect the way workers operate in a shop floor.
+In the absence of a supervisory system coordinating all tasks, workers
+will execute tasks as soon as the task requirements are satisfied with no regard of the global schedule.
+This behaviour does not match the one expected by the scheduler but reflects the way workers operate. In case of task delays,
+workers will often execute tasks in a different but valid order that might later block other tasks and impact on the total make-span.
+Further work will include the option to choose between this behaviour and one strictly respecting the global schedule.
+
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 ---------------------
 
 # Methods explained <a name="methodsexplained"></a>
-
-<span style="color: yellow;">
-  TODO
-</span>.
 
 ## Scheduling problem
 
@@ -627,15 +625,7 @@ Due to this, it is specially suitable for rescheduling when fast response times 
 Most of the time, and for most problems,  this method will provide satisfying solutions, however it does not make any effort to
 try to improve the solutions. Indeed, there might be much better solutions to the problem in the solution space.
 
-## Method 2 : TreeNode Search <a name="tns-explained"></a>
-
-This method implements the Depth First Search algorithm to produce a Tree Node of all possible actions.
-Even though this algorithm is implemented, it is not recommended as in most cases it will fail to conclude due to the large
-combinatorial complexity of the problem. The algorithm will exhaustively search for solutions around the neighborhood
-of the initial solution found with priority and selection rules, which be a local minima.
-To solve this problem, method 3 was designed.
-
-## Method 3 : DFS with features of Evolutionary Algorithms <a name="dfs-ft-EA-explained"></a>
+## Method 2 : DFS with features of Evolutionary Algorithms <a name="dfs-ft-EA-explained"></a>
 
 This method was designed to tackle the problems of method 1 and 2, that is: improve the solution in a limited time all
 while trying to avoid local minima. To do this, the algorithm integrates features of meta-heuristics such as the Evolutionary Algorithms
@@ -763,13 +753,49 @@ in the vicinity of, and therefore, lead to fitter results.
 
 The Software is currently Licence under the [Apache2.0 License Agreement](https://www.apache.org/licenses/LICENSE-2.0) with ownership of the copyright given to IRT Jules Verne.
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
 ## Contact <a name="contact"></a>
 
-<span style="color: yellow;">
-  TODO
-</span>.
+### Commercial Contact
+>
+>Murielle MANIN  
+Chef de Projets de Recherche. R&T Project Manager  
++33 2 55 11 21 45 ❘ +33 7 57 40 97 13
+murielle.manin@irt-jules-verne.fr  
+1 Mail des 20 000 Lieues, 44340 Bouguenais, France
+
+### R&T Team Manager
+>
+>Sébastien RUBRECHT, PhD  
+Responsable d'équipe de Recherche. R&T Team Manager  
+Robotique et Cobotique. Robotics & Cobotics  
++33 2 55 11 21 75 ❘ +33 7 85 39 21 71
+sebastien.rubrecht@irt-jules-verne.fr  
+1 Mail des 20 000 Lieues, 44340 Bouguenais, France
+
+### Development Engineers
+
+>Francisco GAMBOA, PhD  
+Ingénieur R&D. R&T Engineer  
+Robotique et Cobotique. Robotics & Cobotics  
++33 2 55 11 21 09 ❘ +33 6 31 85 70 20
+francisco.gamboa@irt-jules-verne.fr  
+1 Mail des 20 000 Lieues, 44340 Bouguenais, France
+
+> Raphael CASTAGNA  
+Ingénieur R&D. R&T Engineer  
+Robotique et Cobotique. Robotics & Cobotics  
++33 2 55 11 20 87 ❘ +33 7 57 40 39 62
+raphael.castagna@irt-jules-verne.fr  
+1 Mail des 20 000 Lieues, 44340 Bouguenais, France
+
+### Integration Engineer
+
+> Ludovic DELVAL  
+Ingénieur R&D. R&T Engineer  
+Robotique et Cobotique. Robotics & Cobotics  
++33 2 55 11 20 99
+ludovic.delval@irt-jules-verne.fr  
+1 Mail des 20 000 Lieues, 44340 Bouguenais, France
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
